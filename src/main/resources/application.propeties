@@ -1,0 +1,11 @@
+# Agentforce OAuth Configuration
+agentforce.oauth.clientId=
+agentforce.oauth.clientSecret=
+agentforce.oauth.tokenUrl=
+
+# HTTP Listener Configuration
+http.listener.host=localhost
+http.listener.port=8081
+
+# Agent Configuration
+agentforce.agent.id=

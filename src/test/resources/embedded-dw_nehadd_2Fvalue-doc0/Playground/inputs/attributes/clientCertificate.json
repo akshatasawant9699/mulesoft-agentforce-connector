@@ -1,0 +1,73 @@
+{
+  "basicConstraints": 39,
+  "criticalExtensionOIDs": [
+    "nibh",
+    "lorem"
+  ],
+  "extendedKeyUsage": [
+    "tempor",
+    "eros",
+    "pulvinar"
+  ],
+  "extensions": [
+    {
+      "criticality": false,
+      "oid": "ipsum"
+    }
+  ],
+  "issuerAlternativeNames": [
+    {
+      "name": "Chester",
+      "type": 64
+    }
+  ],
+  "issuerDN": {
+    "commonName": "erat",
+    "name": "Dante"
+  },
+  "issuerUniqueID": [
+    false,
+    false,
+    true
+  ],
+  "issuerX500Principal": {
+    "name": "Abraham"
+  },
+  "keyUsage": [
+    true,
+    false
+  ],
+  "name": "Ada",
+  "nonCriticalExtensionOIDs": [
+    "erat",
+    "nibh",
+    "dolor"
+  ],
+  "publicKey": {
+    "algorithm": "ac",
+    "modulus": 43,
+    "params": 73,
+    "publicKey": "consectetur"
+  },
+  "serialNumber": 97,
+  "serialNumberObject": {
+    "serialNumber": 24
+  },
+  "sigAlgName": "Lorem",
+  "sigAlgOID": "convallis",
+  "subjectAlternativeNames": [
+    {
+      "name": "Albina",
+      "type": 81
+    }
+  ],
+  "subjectDN": {
+    "commonName": "felis",
+    "name": "Adah"
+  },
+  "subjectX500Principal": {
+    "name": "Andra"
+  },
+  "type": "molestie",
+  "version": 0
+}

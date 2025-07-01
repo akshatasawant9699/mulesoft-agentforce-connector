@@ -1,0 +1,73 @@
+{
+  "basicConstraints": 91,
+  "criticalExtensionOIDs": [
+    "Lorem",
+    "arcu"
+  ],
+  "extendedKeyUsage": [
+    "ac",
+    "convallis",
+    "Nam"
+  ],
+  "extensions": [
+    {
+      "criticality": true,
+      "oid": "mi"
+    }
+  ],
+  "issuerAlternativeNames": [
+    {
+      "name": "Analisa",
+      "type": 25
+    }
+  ],
+  "issuerDN": {
+    "commonName": "Fusce",
+    "name": "Allen"
+  },
+  "issuerUniqueID": [
+    false,
+    false,
+    true
+  ],
+  "issuerX500Principal": {
+    "name": "Charlie"
+  },
+  "keyUsage": [
+    false,
+    false
+  ],
+  "name": "Ali",
+  "nonCriticalExtensionOIDs": [
+    "elit",
+    "pretium",
+    "tempor"
+  ],
+  "publicKey": {
+    "algorithm": "amet",
+    "modulus": 8,
+    "params": 77,
+    "publicKey": "sodales"
+  },
+  "serialNumber": 8,
+  "serialNumberObject": {
+    "serialNumber": 2
+  },
+  "sigAlgName": "justo",
+  "sigAlgOID": "eros",
+  "subjectAlternativeNames": [
+    {
+      "name": "Adina",
+      "type": 87
+    }
+  ],
+  "subjectDN": {
+    "commonName": "aliquam",
+    "name": "Alejandra"
+  },
+  "subjectX500Principal": {
+    "name": "Ai"
+  },
+  "type": "molestie",
+  "version": 57
+}

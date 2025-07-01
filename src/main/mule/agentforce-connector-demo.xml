@@ -1,0 +1,52 @@
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:ms-agentforce="http://www.mulesoft.org/schema/mule/ms-agentforce" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ms-einstein-ai="http://www.mulesoft.org/schema/mule/ms-einstein-ai"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd  http://www.mulesoft.org/schema/mule/ms-agentforce http://www.mulesoft.org/schema/mule/ms-agentforce/current/mule-ms-agentforce.xsd  http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+	http://www.mulesoft.org/schema/mule/ms-einstein-ai http://www.mulesoft.org/schema/mule/ms-einstein-ai/current/mule-ms-einstein-ai.xsd
+	http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+  <ms-agentforce:config name="Config">
+    <ms-agentforce:oauth-client-credentials-connection>
+      <ms-agentforce:oauth-client-credentials clientId="${agentforce.oauth.clientId}" clientSecret="${agentforce.oauth.clientSecret}" tokenUrl="${agentforce.oauth.tokenUrl}"></ms-agentforce:oauth-client-credentials>
+    </ms-agentforce:oauth-client-credentials-connection>
+  </ms-agentforce:config>
+  <http:listener-config name="Listener-config">
+    <http:listener-connection host="${http.listener.host}" port="${http.listener.port}"></http:listener-connection>
+  </http:listener-config>
+  <flow name="agentforce-demo">
+    <http:listener config-ref="Listener-config" doc:id="xjolxh" doc:name="Listener" path="test">
+      <http:response statusCode="#[vars.httpStatus default 200]">
+        <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+      </http:response>
+      <http:error-response statusCode="#[vars.httpStatus default 500]">
+        <http:body>#[payload]</http:body>
+        <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+      </http:error-response>
+    </http:listener>
+    <set-variable value="#[%dw 2.0
+output application/json
+---
+if (not isEmpty(payload)) payload.script else null]" variableName="message" doc:name="Set variable" doc:id="xibphv" />
+    <ms-agentforce:start-agent-conversation agent="${agentforce.agent.id}" config-ref="Config" doc:id="rmtsos" doc:name="Start agent conversation" outputMimeType="application/json" target="sessionId" targetValue="#[payload.sessionId]">
+      <reconnect></reconnect>
+    </ms-agentforce:start-agent-conversation>
+    <choice doc:name="Choice" doc:id="rzuuue" >
+      <when expression="#[!isEmpty(vars.message)]">
+      <ms-agentforce:continue-agent-conversation messageSequenceNumber="1" doc:name="Continue agent conversation" doc:id="pwwlct" config-ref="Config" target="response" outputMimeType="application/json">
+    <reconnect />
+    <ms-agentforce:message><![CDATA[#[vars.message]]]></ms-agentforce:message>
+    <ms-agentforce:session-id>#[payload.sessionId]</ms-agentforce:session-id>
+    </ms-agentforce:continue-agent-conversation>
+                <logger doc:name="Logger" doc:id="tsesta" message="#[vars.response]"/>
+        <set-payload value="#[vars.response]" doc:name="Set payload" doc:id="cuzfbi" />
+</when>
+      <otherwise>
+        <ms-agentforce:end-agent-conversation doc:name="End agent conversation" doc:id="njgbil" config-ref="Config">
+          <ms-agentforce:session-id>#[payload.sessionId]</ms-agentforce:session-id>
+        </ms-agentforce:end-agent-conversation>
+        <ms-agentforce:unauthorize doc:name="Unauthorize" doc:id="apmxwx" config-ref="Config"/>
+        <set-payload value="Your connection has been terminated. Thank you for chatting with Agent" doc:name="Set payload" doc:id="mktbgy" />
+      </otherwise>
+      
+    </choice>
+    
+  </flow>
+</mule>

@@ -1,0 +1,93 @@
+.tooling-project
+
+# ------------------------------------------------------------------------------ #
+# Java defaults (https://github.com/github/gitignore/blob/master/Java.gitignore) #
+# ------------------------------------------------------------------------------ #
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# ------------------------------------------------------------------------------------------- #
+# Eclipse-specific (https://github.com/github/gitignore/blob/master/Global/Eclipse.gitignore) #
+# ------------------------------------------------------------------------------------------- #
+*.pydevproject
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.project
+.classpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+# --------------- #
+# Studio-specific #
+# --------------- #
+target/
+.mule/
+.DS_Store
+velocity.log
+
+# Mule Runtime
+target/
+.mule/
+*.lock
+
+# Build artifacts
+*.jar
+*.war
+*.ear
+*.class
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Application specific
+application-local.properties
+secure-properties.yaml
