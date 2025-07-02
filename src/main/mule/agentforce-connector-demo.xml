@@ -11,6 +11,7 @@
   <http:listener-config name="Listener-config">
     <http:listener-connection host="${http.listener.host}" port="${http.listener.port}"></http:listener-connection>
   </http:listener-config>
+  <configuration-properties file="application.properties"/>
   <flow name="agentforce-demo">
     <http:listener config-ref="Listener-config" doc:id="xjolxh" doc:name="Listener" path="test">
       <http:response statusCode="#[vars.httpStatus default 200]">
@@ -25,7 +26,7 @@
 output application/json
 ---
 if (not isEmpty(payload)) payload.script else null]" variableName="message" doc:name="Set variable" doc:id="xibphv" />
-    <ms-agentforce:start-agent-conversation agent="${agentforce.agent.id}" config-ref="Config" doc:id="rmtsos" doc:name="Start agent conversation" outputMimeType="application/json" target="sessionId" targetValue="#[payload.sessionId]">
+    <ms-agentforce:start-agent-conversation agent="0XxHs0000003v5LKAQ" config-ref="Config" doc:id="rmtsos" doc:name="Start agent conversation" outputMimeType="application/json" target="sessionId" targetValue="#[payload.sessionId]">
       <reconnect></reconnect>
     </ms-agentforce:start-agent-conversation>
     <choice doc:name="Choice" doc:id="rzuuue" >
@@ -33,14 +34,14 @@ if (not isEmpty(payload)) payload.script else null]" variableName="message" doc:
       <ms-agentforce:continue-agent-conversation messageSequenceNumber="1" doc:name="Continue agent conversation" doc:id="pwwlct" config-ref="Config" target="response" outputMimeType="application/json">
     <reconnect />
     <ms-agentforce:message><![CDATA[#[vars.message]]]></ms-agentforce:message>
-    <ms-agentforce:session-id>#[payload.sessionId]</ms-agentforce:session-id>
+    <ms-agentforce:session-id>#[vars.sessionId]</ms-agentforce:session-id>
     </ms-agentforce:continue-agent-conversation>
                 <logger doc:name="Logger" doc:id="tsesta" message="#[vars.response]"/>
         <set-payload value="#[vars.response]" doc:name="Set payload" doc:id="cuzfbi" />
 </when>
       <otherwise>
         <ms-agentforce:end-agent-conversation doc:name="End agent conversation" doc:id="njgbil" config-ref="Config">
-          <ms-agentforce:session-id>#[payload.sessionId]</ms-agentforce:session-id>
+          <ms-agentforce:session-id>#[vars.sessionId]</ms-agentforce:session-id>
         </ms-agentforce:end-agent-conversation>
         <ms-agentforce:unauthorize doc:name="Unauthorize" doc:id="apmxwx" config-ref="Config"/>
         <set-payload value="Your connection has been terminated. Thank you for chatting with Agent" doc:name="Set payload" doc:id="mktbgy" />
