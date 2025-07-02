@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Intelligent Integrations: Salesforce Agentforce with MuleSoft</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #0176d3;
+            text-align: center;
+            border-bottom: 3px solid #0176d3;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #0176d3;
+            border-left: 4px solid #0176d3;
+            padding-left: 15px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #5a5a5a;
+            margin-top: 25px;
+        }
+        .subtitle {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .toc {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .toc ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            border-left: 4px solid #0176d3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .code-block pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .benefits {
+            background-color: #d4edda;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #28a745;
+        }
+        .diagram-placeholder {
+            background-color: #e9ecef;
+            border: 2px dashed #6c757d;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        ul.features {
+            list-style: none;
+            padding: 0;
+        }
+        ul.features li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        ul.features li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .architecture-box {
+            background-color: #f1f3f4;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .flow-step {
+            background-color: #e3f2fd;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 5px;
+            display: inline-block;
+            border: 1px solid #2196f3;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .info-box {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Building Intelligent Integrations: A Developer's Guide to Salesforce Agentforce with MuleSoft</h1>
+
+<p class="subtitle"><em>Empowering Enterprise Applications with AI-Driven Conversational Interfaces</em></p>
+
+<div class="toc">
+<h2>Table of Contents</h2>
+<ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#what-is-agentforce">What is Salesforce Agentforce?</a></li>
+    <li><a href="#architecture">Architecture Overview</a></li>
+    <li><a href="#implementation">Implementation Deep Dive</a></li>
+    <li><a href="#configuration">Configuration Best Practices</a></li>
+    <li><a href="#code-walkthrough">Code Walkthrough</a></li>
+    <li><a href="#testing">Testing and Deployment</a></li>
+    <li><a href="#use-cases">Use Cases and Benefits</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+</ol>
+</div>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In today's rapidly evolving digital landscape, the integration of artificial intelligence into enterprise applications has become not just a competitive advantage, but a necessity. Salesforce Agentforce, combined with MuleSoft's powerful integration platform, opens up unprecedented opportunities for developers to create intelligent, conversational interfaces that can transform how businesses interact with their customers and internal systems.</p>
+
+<p>This comprehensive guide will walk you through building a production-ready integration between Salesforce Agentforce and MuleSoft, demonstrating best practices, security considerations, and real-world implementation patterns that you can immediately apply in your enterprise projects.</p>
+
+<h2 id="what-is-agentforce">What is Salesforce Agentforce?</h2>
+
+<p>Salesforce Agentforce represents the next generation of AI-powered customer service and business automation. It's an intelligent agent platform that can:</p>
+
+<ul class="features">
+    <li><strong>Understand Natural Language</strong>: Process complex customer queries and business requests</li>
+    <li><strong>Integrate with CRM Data</strong>: Access and manipulate Salesforce data in real-time</li>
+    <li><strong>Automate Business Processes</strong>: Execute complex workflows based on conversational input</li>
+    <li><strong>Scale Intelligently</strong>: Handle multiple concurrent conversations with consistent quality</li>
+</ul>
+
+<h3>Key Capabilities:</h3>
+<ul>
+    <li>🤖 <strong>AI-Powered Conversations</strong>: Natural language processing with context awareness</li>
+    <li>🔄 <strong>Workflow Automation</strong>: Trigger Salesforce processes through conversational interfaces</li>
+    <li>📊 <strong>Data Integration</strong>: Real-time access to CRM data and analytics</li>
+    <li>🛡️ <strong>Enterprise Security</strong>: OAuth 2.0, IP restrictions, and audit trails</li>
+</ul>
+
+<h2 id="architecture">Architecture Overview</h2>
+
+<p>Our integration follows a modern, cloud-native architecture that ensures scalability, security, and maintainability:</p>
+
+<h3>High-Level System Architecture</h3>
+
+<div class="architecture-box">
+    <div class="flow-step">Client Applications</div>
+    <div>↓ HTTP/REST</div>
+    <div class="flow-step">MuleSoft Integration Layer</div>
+    <div>↓ OAuth 2.0</div>
+    <div class="flow-step">Salesforce Agentforce Platform</div>
+    <div>↓ AI Processing</div>
+    <div class="flow-step">Salesforce CRM Data</div>
+</div>
+
+<div class="diagram-placeholder">
+    <strong>Architecture Diagram</strong><br/>
+    <em>Flow: Client → MuleSoft → Agentforce → Response</em><br/>
+    Shows HTTP listener, message processing, Agentforce integration, and response handling
+</div>
+
+<h3>Component Architecture</h3>
+
+<p>The integration consists of three main components:</p>
+
+<ol>
+    <li><strong>Configuration Layer</strong>: Externalized properties for environment-specific settings</li>
+    <li><strong>Integration Layer</strong>: MuleSoft application handling the orchestration</li>
+    <li><strong>AI Layer</strong>: Salesforce Agentforce processing and response generation</li>
+</ol>
+
+<div class="diagram-placeholder">
+    <strong>Configuration Structure Diagram</strong><br/>
+    <em>Shows relationship between application.properties, XML configuration, and Maven dependencies</em>
+</div>
+
+<h2 id="implementation">Implementation Deep Dive</h2>
+
+<h3>Project Structure</h3>
+
+<div class="code-block">
+<pre>
+src/
+├── main/
+│   ├── mule/
+│   │   └── agentforce-connector-demo.xml    # Main integration flow
+│   └── resources/
+│       ├── application.properties           # Configuration properties
+│       └── log4j2.xml                      # Logging configuration
+├── test/
+│   └── munit/                              # Unit tests
+└── target/                                 # Build artifacts
+</pre>
+</div>
+
+<h3>Maven Dependencies</h3>
+
+<div class="code-block">
+<pre>
+&lt;dependencies&gt;
+    &lt;!-- Agentforce Connector --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.mulesoft.connectors&lt;/groupId&gt;
+        &lt;artifactId&gt;mule4-agentforce-connector&lt;/artifactId&gt;
+        &lt;version&gt;1.0.0&lt;/version&gt;
+        &lt;classifier&gt;mule-plugin&lt;/classifier&gt;
+    &lt;/dependency&gt;
+    
+    &lt;!-- HTTP Connector --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.mule.connectors&lt;/groupId&gt;
+        &lt;artifactId&gt;mule-http-connector&lt;/artifactId&gt;
+        &lt;version&gt;1.10.3&lt;/version&gt;
+        &lt;classifier&gt;mule-plugin&lt;/classifier&gt;
+    &lt;/dependency&gt;
+    
+    &lt;!-- Einstein AI Connector --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.mulesoft.connectors&lt;/groupId&gt;
+        &lt;artifactId&gt;mule4-einstein-ai-connector&lt;/artifactId&gt;
+        &lt;version&gt;1.1.1&lt;/version&gt;
+        &lt;classifier&gt;mule-plugin&lt;/classifier&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</pre>
+</div>
+
+<h2 id="configuration">Configuration Best Practices</h2>
+
+<h3>1. Externalized Configuration</h3>
+
+<div class="warning">
+<strong>⚠️ Never hardcode credentials!</strong> Our implementation demonstrates proper externalization.
+</div>
+
+<div class="code-block">
+<pre>
+# application.properties
+# Agentforce OAuth Configuration
+agentforce.oauth.clientId=${AGENTFORCE_CLIENT_ID}
+agentforce.oauth.clientSecret=${AGENTFORCE_CLIENT_SECRET}
+agentforce.oauth.tokenUrl=${AGENTFORCE_TOKEN_URL}
+
+# HTTP Listener Configuration
+http.listener.host=localhost
+http.listener.port=8081
+
+# Agent Configuration
+agentforce.agent.id=${AGENTFORCE_AGENT_ID}
+</pre>
+</div>
+
+<h3>2. Security Best Practices</h3>
+
+<ul class="features">
+    <li><strong>OAuth 2.0 Client Credentials</strong>: Secure service-to-service authentication</li>
+    <li><strong>Environment Variables</strong>: Sensitive data stored in environment variables</li>
+    <li><strong>Property Injection</strong>: Runtime configuration without code changes</li>
+    <li><strong>Audit Logging</strong>: Comprehensive request/response logging</li>
+</ul>
+
+<h2 id="code-walkthrough">Code Walkthrough</h2>
+
+<h3>1. OAuth Configuration</h3>
+
+<div class="code-block">
+<pre>
+&lt;ms-agentforce:config name="Config"&gt;
+    &lt;ms-agentforce:oauth-client-credentials-connection&gt;
+        &lt;ms-agentforce:oauth-client-credentials 
+            clientId="${agentforce.oauth.clientId}" 
+            clientSecret="${agentforce.oauth.clientSecret}" 
+            tokenUrl="${agentforce.oauth.tokenUrl}"&gt;
+        &lt;/ms-agentforce:oauth-client-credentials&gt;
+    &lt;/ms-agentforce:oauth-client-credentials-connection&gt;
+&lt;/ms-agentforce:config&gt;
+</pre>
+</div>
+
+<div class="info-box">
+<strong>Key Features:</strong>
+<ul>
+    <li>Property injection for environment-specific values</li>
+    <li>Automatic token management and refresh</li>
+    <li>Connection pooling and retry logic</li>
+</ul>
+</div>
+
+<h3>2. Message Processing Flow</h3>
+
+<div class="code-block">
+<pre>
+&lt;!-- Extract message from incoming payload --&gt;
+&lt;set-variable value="#[%dw 2.0
+output application/json
+---
+if (not isEmpty(payload)) payload.script else null]" 
+variableName="message" /&gt;
+
+&lt;!-- Start conversation with Agentforce --&gt;
+&lt;ms-agentforce:start-agent-conversation 
+    agent="${agentforce.agent.id}" 
+    config-ref="Config" 
+    target="sessionId" 
+    targetValue="#[payload.sessionId]"&gt;
+    &lt;reconnect&gt;&lt;/reconnect&gt;
+&lt;/ms-agentforce:start-agent-conversation&gt;
+</pre>
+</div>
+
+<h3>3. Intelligent Conversation Logic</h3>
+
+<div class="diagram-placeholder">
+    <strong>Sequence Diagram</strong><br/>
+    <em>Client → MuleSoft → Agentforce interaction flow</em><br/>
+    Shows message processing, session management, and response handling
+</div>
+
+<div class="code-block">
+<pre>
+&lt;choice&gt;
+    &lt;when expression="#[!isEmpty(vars.message)]"&gt;
+        &lt;!-- Continue conversation with user message --&gt;
+        &lt;ms-agentforce:continue-agent-conversation 
+            messageSequenceNumber="1" 
+            config-ref="Config" 
+            target="response"&gt;
+            &lt;ms-agentforce:message&gt;&lt;![CDATA[#[vars.message]]]&gt;&lt;/ms-agentforce:message&gt;
+            &lt;ms-agentforce:session-id&gt;#[payload.sessionId]&lt;/ms-agentforce:session-id&gt;
+        &lt;/ms-agentforce:continue-agent-conversation&gt;
+        
+        &lt;logger message="#[vars.response]"/&gt;
+        &lt;set-payload value="#[vars.response]" /&gt;
+    &lt;/when&gt;
+    &lt;otherwise&gt;
+        &lt;!-- End conversation and cleanup --&gt;
+        &lt;ms-agentforce:end-agent-conversation config-ref="Config"&gt;
+            &lt;ms-agentforce:session-id&gt;#[payload.sessionId]&lt;/ms-agentforce:session-id&gt;
+        &lt;/ms-agentforce:end-agent-conversation&gt;
+        
+        &lt;ms-agentforce:unauthorize config-ref="Config"/&gt;
+        
+        &lt;set-payload value="Your connection has been terminated. Thank you for chatting with Agent" /&gt;
+    &lt;/otherwise&gt;
+&lt;/choice&gt;
+</pre>
+</div>
+
+<h2 id="testing">Testing and Deployment</h2>
+
+<h3>Local Testing</h3>
+
+<div class="code-block">
+<pre>
+# Start the application
+mvn clean package
+java -jar target/a2a-test-1.0.0-SNAPSHOT-mule-application.jar
+
+# Test with conversation
+curl -X POST http://localhost:8081/test \
+  -H "Content-Type: application/json" \
+  -d '{"script": "Hello, I need help with my account"}'
+
+# Test termination
+curl -X POST http://localhost:8081/test \
+  -H "Content-Type: application/json" \
+  -d '{}'
+</pre>
+</div>
+
+<h3>Sample Request/Response</h3>
+
+<table>
+    <tr>
+        <th>Request</th>
+        <th>Response</th>
+    </tr>
+    <tr>
+        <td>
+            <div class="code-block">
+<pre>
+POST /test
+{
+    "script": "I need to update my billing address"
+}
+</pre>
+            </div>
+        </td>
+        <td>
+            <div class="code-block">
+<pre>
+{
+    "messages": [
+        {
+            "id": "msg_123",
+            "content": "I'd be happy to help you update your billing address. Can you please provide your account number?",
+            "role": "assistant",
+            "timestamp": "2025-01-09T10:30:00Z"
+        }
+    ],
+    "sessionId": "session_abc123",
+    "status": "active"
+}
+</pre>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<h2 id="use-cases">Use Cases and Benefits</h2>
+
+<h3>1. Customer Service Automation</h3>
+<ul>
+    <li><strong>24/7 Availability</strong>: AI agents handle customer inquiries around the clock</li>
+    <li><strong>Intelligent Routing</strong>: Complex queries automatically escalated to human agents</li>
+    <li><strong>Context Preservation</strong>: Full conversation history maintained across interactions</li>
+</ul>
+
+<h3>2. Internal Process Automation</h3>
+<ul>
+    <li><strong>Employee Self-Service</strong>: HR queries, IT support, and policy questions</li>
+    <li><strong>Data Retrieval</strong>: Natural language queries against CRM data</li>
+    <li><strong>Workflow Triggers</strong>: Conversational interfaces for business processes</li>
+</ul>
+
+<div class="benefits">
+<h3>Business Benefits</h3>
+<ul>
+    <li>📈 <strong>Cost Reduction</strong>: 40-60% reduction in customer service costs</li>
+    <li>⚡ <strong>Response Time</strong>: Instant responses to common queries</li>
+    <li>🎯 <strong>Accuracy</strong>: Consistent, accurate information delivery</li>
+    <li>📊 <strong>Analytics</strong>: Rich conversation data for business insights</li>
+</ul>
+</div>
+
+<h2>Advanced Features and Considerations</h2>
+
+<h3>Session Management</h3>
+<ul>
+    <li>Automatic session cleanup after inactivity</li>
+    <li>Session state persistence for complex workflows</li>
+    <li>Multi-turn conversation support</li>
+</ul>
+
+<h3>Error Handling and Resilience</h3>
+<ul>
+    <li>Connection retry logic with exponential backoff</li>
+    <li>Circuit breaker pattern for external service calls</li>
+    <li>Graceful degradation during service outages</li>
+</ul>
+
+<h3>Security Considerations</h3>
+
+<div class="highlight">
+<h4>Authentication and Authorization</h4>
+<ul>
+    <li>OAuth 2.0 client credentials flow</li>
+    <li>Token rotation and refresh strategies</li>
+    <li>Role-based access control integration</li>
+</ul>
+
+<h4>Data Protection</h4>
+<ul>
+    <li>Encryption in transit (TLS 1.3)</li>
+    <li>PII masking in logs</li>
+    <li>GDPR compliance for conversation data</li>
+</ul>
+</div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>This integration between Salesforce Agentforce and MuleSoft demonstrates the powerful possibilities when AI meets enterprise integration. By following the patterns and practices outlined in this guide, you can:</p>
+
+<div class="benefits">
+<ul class="features">
+    <li><strong>Accelerate Development</strong>: Leverage proven architectural patterns</li>
+    <li><strong>Ensure Security</strong>: Implement enterprise-grade security from day one</li>
+    <li><strong>Scale Confidently</strong>: Build with scalability and performance in mind</li>
+    <li><strong>Maintain Quality</strong>: Use comprehensive testing and monitoring strategies</li>
+</ul>
+</div>
+
+<p>The combination of Agentforce's AI capabilities with MuleSoft's integration excellence provides a robust foundation for building the next generation of intelligent enterprise applications.</p>
+
+<h3>Next Steps</h3>
+<ol>
+    <li>Clone the repository: <code>git clone https://github.com/akshatasawant9699/mulesoft-agentforce-connector.git</code></li>
+    <li>Configure your Salesforce org with Agentforce</li>
+    <li>Set up your development environment</li>
+    <li>Customize the flow for your specific use cases</li>
+    <li>Deploy to your target environment</li>
+</ol>
+
+<h3>Resources</h3>
+<ul>
+    <li><a href="https://help.salesforce.com/agentforce">Salesforce Agentforce Documentation</a></li>
+    <li><a href="https://docs.mulesoft.com/connectors/">MuleSoft Connector Documentation</a></li>
+    <li><a href="https://oauth.net/2/">OAuth 2.0 Best Practices</a></li>
+    <li><a href="https://github.com/akshatasawant9699/mulesoft-agentforce-connector">Source Code Repository</a></li>
+</ul>
+
+<hr>
+
+<p><strong>About the Author</strong>: This integration guide was created as part of a developer enablement initiative to demonstrate best practices for AI-powered enterprise integrations.</p>
+
+<p><strong>Last Updated</strong>: January 2025</p>
+
+<p><strong>Version</strong>: 1.0.0</p>
+
+</body>
+</html> 
